@@ -162,10 +162,12 @@ class JdSeckill(object):
             'from': 'pc',
             '_': str(int(time.time() * 1000)),
         }
+        referer = 'https://item.jd.com/{}.html'.format(self.sku_id)
         headers = {
             'User-Agent': self.default_user_agent,
             'Host': 'itemko.jd.com',
-            'Referer': 'https://item.jd.com/{}.html'.format(self.sku_id),
+            # 'Referer': 'https://item.jd.com/{}.html'.format(self.sku_id),
+            'referer': referer.encode("utf-8").decode("latin1"),
         }
         while True:
             resp = self.session.get(url=url, headers=headers, params=payload)
